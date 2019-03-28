@@ -19,10 +19,18 @@ class DrumPad extends Component {
     }
     handleKeyPress(e) {
         if (e.keyCode === this.props.keyCode) {
-
             this.playSound();
             this.props.display(this.props.soundName);
         }
+    }
+
+    keyAnimation() {
+        const key = document.getElementById(this.props.soundName);
+        console.log(key);
+        key.classList.add('playing');
+        setTimeout(function () {
+            key.classList.remove('playing')
+        }, 90);
     }
 
 
@@ -32,6 +40,7 @@ class DrumPad extends Component {
         sound.currentTime = 0;
         sound.play();
         this.props.display(this.props.soundName);
+        this.keyAnimation();
     }
 
 
